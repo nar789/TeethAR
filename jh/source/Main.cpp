@@ -15,6 +15,7 @@ int main(int argc,char** argv)
 	int K = 200;
 	int dist = 100;
 	bool debug = false;
+	/*
 	if (argc > 1)
 	{
 		string s = argv[0];
@@ -49,10 +50,17 @@ int main(int argc,char** argv)
 			else { cout << "arUkiddingMe?" << endl; if (++cnt > 2)exit(1); }
 		} while (1);
 	}
-
-	Teeth t(img,K,dist);
-	t.DrawRect(debug);
-	imshow("teeth",img);
+	*/
+	VideoCapture cap;
+	if (!cap.open(0))return 0;
+	while (1) {
+		cap >> img;
+		if (img.empty())break;
+		Teeth t(img, K, dist);
+		t.DrawRect(debug);
+		imshow("teeth", img);
+		if (waitKey(10)==27)break;
+	}
 	waitKey(0);
 	return 0;
 }
