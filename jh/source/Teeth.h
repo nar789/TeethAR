@@ -29,6 +29,13 @@ public:
 	Teeth(Mat Image) :origin(Image) { img = origin.clone(); W = img.size().width; H = img.size().height; };
 	Teeth(Mat Image, int _K, int Dist) :K(_K),dist(Dist), origin(Image) { img = origin.clone(); W = img.size().width; H = img.size().height;};
 
+	bool DetectLips(Vec3b& a) { //bgr
+		int rb = a[2] - a[0];
+		int rg = a[2] - a[1];
+		if (rb > 50 && rg > 70)return true;
+		return false;
+	}
+
 	void PreProcess(void) {
 		visit.clear();
 		for (int i = 0; i < H; i++) {
@@ -37,7 +44,11 @@ public:
 			{
 				visit[i].push_back(0);
 				auto& p = img.at<Vec3b>(i, j);
-				p = { (p[0] > K&&p[1]>K&&p[2] > K) ? (uchar)0 : (uchar)255,255,255 };
+				if (DetectLips(p))
+					p = { 0,255,255 };
+				else
+					p = {255,255,255};
+				//p = { (p[0] > K&&p[1]>K&&p[2] > K) ? (uchar)0 : (uchar)255,255,255 };
 			}
 		}
 	}
@@ -106,6 +117,7 @@ public:
 			if (right < i.x)right = i.x;
 			teethimg.at<Vec3b>(i.y, i.x) = { (uchar)(i.g * 100 % 255), (uchar)(i.g * 50 % 255),(uchar)(i.g * 70 % 255) };
 		}
-		rectangle(origin, Rect(left, top, right - left, bottom - top), Scalar(0, 255, 0), 3);
+		if(teeth.size()!=0)
+			rectangle(origin, Rect(left, top, right - left, bottom - top), Scalar(0, 255, 0), 3);
 	}
 };

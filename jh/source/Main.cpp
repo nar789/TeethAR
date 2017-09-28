@@ -13,7 +13,7 @@ int main(int argc,char** argv)
 	Mat img;
 	int cnt = 0;
 	int K = 200;
-	int dist = 100;
+	int dist = 30;
 	bool debug = true;
 
 	if (argc > 1)
