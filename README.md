@@ -15,6 +15,8 @@ _ TeethAR image.jpg 200 100 1
 
 ### 2.Screenshot
 
+![android](img/android.PNG)
+
 ![detect](img/detect.PNG)
 
 ![debug1](img/debug1.png)
