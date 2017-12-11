@@ -19,11 +19,6 @@ _ TeethAR image.jpg 200 100 1
 
 ![detect](img/detect.PNG)
 
-![debug1](img/debug1.png)
-
-![debug2](img/debug2.PNG)
-
-
 ### 3. Contact
 - GitHub(http://github.com/nar789)
 - Email(mailto:tony92511@hanmail.net)
