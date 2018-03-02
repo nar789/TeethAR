@@ -1,0 +1,10 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load staticfiles %}
+	<h1>{{ msg }}</h1>
+	<a href="{% url 'load' %}"><button class="btn btn-info">목록으로</button></a>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script>
+		$(".masthead-brand").html("<i class=\"fas fa-user-md\"></i> "+"{{ title }}&nbsp;&nbsp;");
+	</script>
+{% endblock %}

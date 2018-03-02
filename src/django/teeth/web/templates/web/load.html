@@ -1,0 +1,58 @@
+{% extends 'web/base.html' %}
+{% block content %}
+{% load staticfiles %}
+
+	
+	<a href="javascript:history.back()"><button class="btn btn-info">뒤로가기</button></a>
+	<br>
+
+	<table class="table table-hover" width='600'>
+		<thead>
+		<tr>
+		<td>ID</td>
+		<td>환자성명</td>
+		<td>기준선길이</td>
+		<td>로드</td>
+		<td>삭제</td>
+		</tr>
+		</thead>
+
+	{% for i in t %}
+		<tr>
+		<td>{{i.id}}</td>
+		<td>{{i.name}}</td>
+		<td>{{i.lpp}}</td>
+		<td><a href="{% url 'index' %}?id={{i.id}}"><button class="btn btn-success">로드</button></a></td>
+		<td><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal_del{{i.id}}">삭제</button>
+
+
+			<div class="modal fade" id="exampleModal_del{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:#333;text-shadow: none;">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">{{i.name}}님 환자 정보 삭제하기</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <h5>{{i.name}}님 환자정보를 삭제하시겠습니까?</h5>
+			      <h6 class="text-danger">※삭제하면 복원이 불가합니다.</h6>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+			        <a href="{% url 'delete' i.id %}"><button type="button" class="btn btn-danger">삭제하기</button></a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</td>
+		</tr>
+
+	{% endfor %}
+	</table>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+			$(".masthead-brand").html("<i class=\"fas fa-user-md\"></i> "+"불러오기&nbsp;&nbsp;");
+			$("#nav-new").attr("class","nav-link");
+			$("#nav-load").attr("class","nav-link active");
+	</script>
+{% endblock %}

@@ -1,0 +1,98 @@
+
+{% extends 'web/base.html' %}
+{% block content %}
+{% load staticfiles %}
+	<link href="{% static 'web/css/index.css' %}" rel="stylesheet">
+
+	<h6><kbd>num1</kbd>영역설정 &nbsp; <kbd>num2</kbd>이동&크기 &nbsp; <kbd>num3</kbd>확인 &nbsp; <kbd>num4</kbd>기준선모드 &nbsp;<br><kbd>esc</kbd>취소 &nbsp; <kbd>del</kbd>삭제</h6>
+	
+	<canvas id="canvas" width="600" height="400"></canvas>
+	{% if t %}
+		<img src='{{t.img}}' id=teeth style="display: none;">
+	{% else %}
+		<img src='{{img}}' id=teeth style="display: none;">
+	{% endif %}
+	
+
+
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	  기준선 길이 지정하기
+	</button>
+
+	<button type="button" class="btn btn-success" onclick='calculate()'>
+	  계산하기
+	</button>
+
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_save" id=savebtn>
+		저장하기
+	</button>
+
+
+	<div class="modal fade" id="exampleModal_save" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">환자 정보 저장하기</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <input type="text" class="form-control" id="name" placeholder="예:홍길동">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="formsave()">저장하기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">기준선 길이 지정하기</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <input type="number" class="form-control" id="line" placeholder="예:3.5"> (단위:mm)
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<form method="POST" id=form>
+		{% csrf_token %}
+		<input type=hidden name=id value="0" id=fid>
+		<input type=hidden name=lpp value="3.5" id=flpp>
+		<input type=hidden name=name value="홍길동" id=fname>
+		<input type=hidden name=teeth value="[]" id=fteeth>
+		<input type=hidden name=img value="teeth.png" id=fimg>
+	</form>
+
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="{% static 'web/js/index.js' %}"></script>
+	{% if t %}
+	<script>
+		$(".masthead-brand").html("<i class=\"fas fa-user-md\"></i> "+"{{ t.name }}");
+		$("#name").val("{{t.name}}");
+		teeth={{ t.teeth|safe }};
+		$("#line").val("{{ t.lpp }}");
+		$("#fid").val("{{ t.id }}");
+		$("#teeth").attr("src","{{t.img}}");
+		updateCanvas();
+		//$("#teeth").attr("src","{{ t.img }}");
+		
+	</script>
+	{% endif %}
+{% endblock %}

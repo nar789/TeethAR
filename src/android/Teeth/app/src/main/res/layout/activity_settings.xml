@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ipaddr"
+        android:layout_alignBottom="@+id/ipaddr"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="서버IP주소"
+        android:layout_marginRight="20dp"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_toRightOf="@id/text"
+        android:id="@+id/ipaddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="255.255.255.255"
+        android:inputType="number"
+        android:digits="1234567890."
+        />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/setbtn"
+        android:background="#66aa88"
+        android:textColor="#FFF"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="설정완료"/>
+
+
+</RelativeLayout>

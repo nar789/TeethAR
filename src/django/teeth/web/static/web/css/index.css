@@ -1,0 +1,22 @@
+
+canvas { 
+	margin:0px;
+	padding: 0px;
+	background-color: #efefef; 
+}
+
+.modal-title{
+	
+}
+#line{
+	width: 100px;
+	margin:0px;
+	display: inline-block;
+}
+.modal{
+	text-shadow: none;
+	color:#333;
+}
+#savebtn{
+	display: none;
+}

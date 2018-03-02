@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="../../../../favicon.ico">//-->
+
+    <title>SK Teeth AR system</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="{% static 'web/css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'web/css/cover.css' %}" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand" id=h3-title><i class="fas fa-user-md"></i> 홍길동</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="{% url 'index' %}" id=nav-new><i class="fas fa-search"></i> 새로운 치아인식</a>
+            <a class="nav-link" href="javascript:savebtnclick()"><i class="fas fa-save"></i> 저장하기</a>
+            <a class="nav-link" href="{% url 'load' %}" id=nav-load><i class="fas fa-upload"></i> 불러오기</a>
+          </nav>
+        </div>
+      </header>
+
+      {% block content %}
+      {% endblock %}  
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Copyright 2018. <a href="http://cie.kunsan.ac.kr/" target="_blank">MCA lab.</a> all rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
